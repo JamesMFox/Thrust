@@ -31,11 +31,12 @@ public:
 	~D3DGraphics();
 	void PutPixel( int x,int y,D3DCOLOR c );
 	D3DCOLOR GetPixel( int x,int y ) const;
-	inline void DrawLine( Vec2& pt1,Vec2& pt2,D3DCOLOR c )
+	inline void DrawLine( Vec2 pt1,Vec2 pt2,D3DCOLOR c )
 	{
 		DrawLine( (int)pt1.x,(int)pt1.y,(int)pt2.x,(int)pt2.y,c );
 	}
 	void DrawLine( int x1,int y1,int x2,int y2,D3DCOLOR c );
+	void DrawLineClip(Vec2 p0, Vec2 p1, D3DCOLOR color);
 	void DrawCircle( int centerX,int centerY,int radius,D3DCOLOR c );
 	void BeginFrame();
 	void EndFrame();

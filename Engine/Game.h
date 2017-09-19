@@ -26,11 +26,12 @@
 #include "Sound.h"
 #include "Timer.h"
 #include "FrameTimer.h"
+#include "PolyClosed.h"
 
 class Game
 {
 public:
-	Game( HWND hWnd,KeyboardServer& kServer,const MouseServer& mServer );
+	Game( HWND hWnd,KeyboardServer& kServer,MouseServer& mServer );
 	~Game();
 	void Go();
 private:
@@ -46,7 +47,9 @@ private:
 	DSound audio;
 	/********************************/
 	/*  User Variables              */
-	
+	PolyClosed model;
+	float angle = 0.0f;
+	float scale = 1.0f;
 	/********************************/
 	void UpdateModel();
 };

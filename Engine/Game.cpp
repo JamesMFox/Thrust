@@ -19,12 +19,14 @@
  *	along with The Chili DirectX Framework.  If not, see <http://www.gnu.org/licenses/>.  *
  ******************************************************************************************/
 #include "Game.h"
+#include "Mat3.h"
 
-Game::Game( HWND hWnd,KeyboardServer& kServer,const MouseServer& mServer )
+Game::Game( HWND hWnd,KeyboardServer& kServer,MouseServer& mServer )
 :	gfx( hWnd ),
 	audio( hWnd ),
 	kbd( kServer ),
-	mouse( mServer )
+	mouse( mServer ),
+	model("shipd.dxf")
 {
 }
 
@@ -34,6 +36,9 @@ Game::~Game()
 
 void Game::Go()
 {
+	Mat3 m = {1,2,3,4,5,6,7,8,9};
+	Mat3 b = {1,0,0,0,2,0,0,0,3};
+	Mat3 c = m*b;
 	UpdateModel();
 	gfx.BeginFrame();
 	ComposeFrame();
@@ -42,8 +47,26 @@ void Game::Go()
 
 void Game::UpdateModel( )
 {
+	if (kbd.KeyIsPressed(VK_LEFT))
+	{
+		angle -= 0.1f;
+	}
+	if (kbd.KeyIsPressed(VK_RIGHT))
+	{
+		angle += 0.1f;
+	}
+	switch (mouse.ReadMouse().GetType())
+	{
+	case MouseEvent::WheelUp:
+		scale *= 1.13f;
+		break;
+	case MouseEvent::WheelDown:
+		scale /= 1.13f;
+		break;
+	}
 }
 
 void Game::ComposeFrame()
 {
+	model.Draw({ (float)mouse.GetMouseX(),(float)mouse.GetMouseY() }, angle,scale, gfx);
 }

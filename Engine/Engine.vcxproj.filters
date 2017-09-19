@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Framework">
       <UniqueIdentifier>{d83c0ef5-8392-49c7-80c4-d48900829440}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\dxflib">
+      <UniqueIdentifier>{96d68a15-d54d-49df-a900-164fa3056d1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -57,6 +60,42 @@
     <ClInclude Include="Vec2.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="PolyClosed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_creationadapter.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_creationinterface.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_dxf.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_entities.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_exception.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_extrusion.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_writer.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_writer_ascii.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_attributes.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="dxflib\dl_codes.h">
+      <Filter>Header Files\dxflib</Filter>
+    </ClInclude>
+    <ClInclude Include="Mat3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -79,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="Windows.cpp">
       <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="dxflib\dl_dxf.cpp">
+      <Filter>Header Files\dxflib</Filter>
+    </ClCompile>
+    <ClCompile Include="dxflib\dl_writer_ascii.cpp">
+      <Filter>Header Files\dxflib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
