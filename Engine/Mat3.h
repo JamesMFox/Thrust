@@ -45,6 +45,36 @@ public:
 	{
 		return *this = (*this*rhs);
 	}
+	_Vec2<T> operator *(const _Vec2<T> rhs)
+	{
+		_Vec2<T> result;
+		result.x = elements[0][0] * rhs.x + elements[0][1] * rhs.y + elements[0][2];
+		result.y = elements[1][0] * rhs.x + elements[1][1] * rhs.y + elements[1][2];
+		return result;
+	}
+	static _Mat3 Identity()
+	{
+		_Mat3 i = { (T)1.0,(T)0.0,(T)0.0,(T)0.0,(T)1.0,(T)0.0,(T)0.0,(T)0.0,(T)1.0 };
+		return i;
+	}
+	static _Mat3 Rotation(T theta)
+	{
+		const T cosTheta = cos(theta);
+		const T sinTheta = sin(theta);
+		_Mat3 r = { cosTheta,-sinTheta,(T)0.0f,sinTheta,cosTheta,(T)0.0, (T)0.0, (T)0.0, (T)1.0 };
+		return r;
+	}
+	static _Mat3 Scaling(T factor)
+	{
+		_Mat3 s = { factor,(T)0.0,(T)0.0,(T)0.0,factor,(T)0.0,(T)0.0,(T)0.0,(T)1.0 };
+		return s;
+	}
+	static _Mat3 Translation(T dx, T dy)
+	{
+		_Mat3 t = { (T)1.0,(T)0.0,dx,(T)0.0,(T)1.0,dy,(T)0.0,(T)0.0,(T)1.0, };
+		return t;
+	}
+
 public:
 	// [row][col]
 	T elements[3][3];
