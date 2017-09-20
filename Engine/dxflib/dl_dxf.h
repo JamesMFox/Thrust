@@ -322,7 +322,10 @@ public:
             double ret;
             if (strchr(value, ',') != NULL) {
                char* tmp = new char[strlen(value)+1];
+#pragma warning (push)
+#pragma warning (disable:4996)
                strcpy(tmp, value);
+#pragma warning (pop)
                DL_WriterA::strReplace(tmp, ',', '.');
                ret = atof(tmp);
       		   delete[] tmp;

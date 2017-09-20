@@ -23,6 +23,8 @@
 ** not clear to you.
 **
 **********************************************************************/
+#pragma warning (push)
+#pragma warning (disable : 4996)
 
 #include "dl_dxf.h"
 
@@ -5068,3 +5070,4 @@ void DL_Dxf::test() {
 }
 
 
+#pragma warning (pop)

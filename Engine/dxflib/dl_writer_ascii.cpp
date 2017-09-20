@@ -61,7 +61,10 @@ bool DL_WriterA::openFailed() const {
  */
 void DL_WriterA::dxfReal(int gc, double value) const {
     char str[256];
+#pragma warning (push)
+#pragma warning (disable:4996)
     sprintf(str, "%.16lf", value);
+#pragma warning (pop)
 	
 	// fix for german locale:
 	strReplace(str, ',', '.');
@@ -109,7 +112,10 @@ void DL_WriterA::dxfInt(int gc, int value) const {
  */
 void DL_WriterA::dxfHex(int gc, int value) const {
     char str[12];
+#pragma warning (push)
+#pragma warning (disable : 4996)
     sprintf(str, "%0X", value);
+#pragma warning (pop)
     dxfString(gc, str);
 }
 
