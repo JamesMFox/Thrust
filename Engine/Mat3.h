@@ -8,7 +8,7 @@ class _Mat3
 public:
 	_Mat3& operator =(const _Mat3& rhs)
 	{
-		memcpy(elemtents, rhs.elements, sizeof(elements));
+		memcpy(elements, rhs.elements, sizeof(elements));
 		return *this;
 	}
 	_Mat3& operator *=(const float rhs)
@@ -45,7 +45,7 @@ public:
 	{
 		return *this = (*this*rhs);
 	}
-	_Vec2<T> operator *(const _Vec2<T> rhs)
+	_Vec2<T> operator *(const _Vec2<T> rhs) const
 	{
 		_Vec2<T> result;
 		result.x = elements[0][0] * rhs.x + elements[0][1] * rhs.y + elements[0][2];
