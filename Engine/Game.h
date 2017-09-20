@@ -27,6 +27,8 @@
 #include "Timer.h"
 #include "FrameTimer.h"
 #include "PolyClosed.h"
+#include "Camera.h"
+#include "Viewport.h"
 
 class Game
 {
@@ -47,6 +49,9 @@ private:
 	DSound audio;
 	/********************************/
 	/*  User Variables              */
+
+	Viewport port;
+	Camera cam;
 	PolyClosed model;
 	float angle = 0.0f;
 	float scale = 1.0f;

@@ -7,6 +7,7 @@
 #include "dxflib\dl_creationadapter.h"
 #include "Mat3.h"
 #include <memory>
+#include "Drawable.h"
 
 class PolyClosedLoader : public DL_CreationAdapter
 {
@@ -31,6 +32,28 @@ private:
 class PolyClosed
 {
 public:
+	class Drawable : public ::Drawable
+	{
+	public:
+		Drawable(const PolyClosed& parent)
+			:
+			parent(parent)
+		{}
+		virtual void Rasterize(D3DGraphics& gfx) const
+		{
+			for (auto i = parent.vertices.begin(), end = parent.vertices.end() - 1;
+				i != end; i++)
+			{
+
+				gfx.DrawLineClip(trans * *i, trans * *(i + 1), parent.color);
+			}
+			gfx.DrawLineClip(trans * parent.vertices.back(),
+				trans * parent.vertices.front(), parent.color);
+		}
+	private:
+		const PolyClosed& parent;
+	};
+public:
 	PolyClosed(std::initializer_list<Vec2> vlist, D3DCOLOR color = WHITE)
 		:
 		vertices(vlist),
@@ -41,17 +64,11 @@ public:
 		vertices(std::move(PolyClosedLoader(filename).GetVertices())),
 		color(color)
 	{}
-	void Draw(Vec2 pos, float angle,float scale, D3DGraphics& gfx)
+	Drawable GetDrawable() const
 	{
-		Mat3 trans = Mat3::Translation(pos) * Mat3::Rotation(angle) * Mat3::Scaling(scale) ;
-
-		for (auto i = vertices.begin(), end = vertices.end()-1; i != end; i++)
-		{
-			
-			gfx.DrawLineClip(trans * *i, trans * *(i + 1), color);
-		}
-		gfx.DrawLineClip(trans * vertices.back(), trans * vertices.front(), color);
+		return Drawable(*this);
 	}
+
 private:
 	D3DCOLOR color;
 	const std::vector<Vec2> vertices;

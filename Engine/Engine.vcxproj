@@ -88,6 +88,8 @@
     <ClInclude Include="ChiliMath.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="D3DGraphics.h" />
+    <ClInclude Include="Drawable.h" />
+    <ClInclude Include="DrawTarget.h" />
     <ClInclude Include="dxflib\dl_attributes.h" />
     <ClInclude Include="dxflib\dl_codes.h" />
     <ClInclude Include="dxflib\dl_creationadapter.h" />
@@ -109,6 +111,8 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Viewport.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DGraphics.cpp" />

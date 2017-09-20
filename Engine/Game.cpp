@@ -26,7 +26,9 @@ Game::Game( HWND hWnd,KeyboardServer& kServer,MouseServer& mServer )
 	audio( hWnd ),
 	kbd( kServer ),
 	mouse( mServer ),
-	model("shipd.dxf")
+	model("shipd.dxf"),
+	port(gfx, {0,D3DGraphics::SCREENHEIGHT-1,0,D3DGraphics::SCREENWIDTH-1}),
+	cam(port, (float)port.GetWidth(), (float)port.GetHeight())
 {
 }
 
@@ -36,9 +38,6 @@ Game::~Game()
 
 void Game::Go()
 {
-	Mat3 m = {1,2,3,4,5,6,7,8,9};
-	Mat3 b = {1,0,0,0,2,0,0,0,3};
-	Mat3 c = m*b;
 	UpdateModel();
 	gfx.BeginFrame();
 	ComposeFrame();
@@ -68,5 +67,8 @@ void Game::UpdateModel( )
 
 void Game::ComposeFrame()
 {
-	model.Draw({ (float)mouse.GetMouseX(),(float)mouse.GetMouseY() }, angle,scale, gfx);
+	PolyClosed::Drawable d = model.GetDrawable();
+	d.Transform(Mat3::Translation({ (float)mouse.GetMouseX(),(float)mouse.GetMouseY() })
+		* Mat3::Rotation(angle) * Mat3::Scaling(scale));
+	cam.Draw(d);
 }
