@@ -5,6 +5,7 @@
 #include <vector>
 #include "dxflib\dl_dxf.h"
 #include "dxflib\dl_creationadapter.h"
+#include "Mat3.h"
 #include <memory>
 
 class PolyClosedLoader : public DL_CreationAdapter
@@ -42,12 +43,14 @@ public:
 	{}
 	void Draw(Vec2 pos, float angle,float scale, D3DGraphics& gfx)
 	{
+		Mat3 trans = Mat3::Translation(pos) * Mat3::Rotation(angle) * Mat3::Scaling(scale) ;
+
 		for (auto i = vertices.begin(), end = vertices.end()-1; i != end; i++)
 		{
 			
-			gfx.DrawLineClip(i->Rotation(angle)*scale+pos, (i + 1)->Rotation(angle)*scale+pos, color);
+			gfx.DrawLineClip(trans * *i, trans * *(i + 1), color);
 		}
-		gfx.DrawLineClip(vertices.back().Rotation(angle)*scale + pos, vertices.front().Rotation(angle)*scale + pos, color);
+		gfx.DrawLineClip(trans * vertices.back(), trans * vertices.front(), color);
 	}
 private:
 	D3DCOLOR color;
