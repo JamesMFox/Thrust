@@ -64,6 +64,14 @@ public:
 		left = max( left,rect.left );
 		right = min( right,rect.right );
 	}
+	inline	T GetWidth() const
+	{
+		return right - left;
+	}
+	inline	T GetHeight() const
+	{
+		return bottom - top;
+	}
 
 public:
 	T top;

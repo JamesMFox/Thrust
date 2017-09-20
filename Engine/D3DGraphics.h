@@ -23,8 +23,9 @@
 #include <d3d9.h>
 #include "Vec2.h"
 #include "Colors.h"
+#include "DrawTarget.h"
 
-class D3DGraphics
+class D3DGraphics : public DrawTarget
 {
 public:
 	D3DGraphics( HWND hWnd );
@@ -40,6 +41,10 @@ public:
 	void DrawCircle( int centerX,int centerY,int radius,D3DCOLOR c );
 	void BeginFrame();
 	void EndFrame();
+	virtual void Draw(Drawable& obj)
+	{
+		obj.Rasterize(*this);
+	}
 public:
 	static const unsigned int	SCREENWIDTH =	800;
 	static const unsigned int	SCREENHEIGHT =	600;
